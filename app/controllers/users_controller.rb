@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   skip_before_action :authorized, only: [:create]
+  wrap_parameters format: []
 
   def create
     @user = User.create!(user_params)
@@ -14,7 +15,8 @@ class UsersController < ApplicationController
     params.permit(:username,
                   :email,
                   :password,
-                  :password_confirmation)
+                  :password_confirmation,
+                  :image)
   end
 
   def render_unprocessable_entity_response(invalid)
