@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
   wrap_parameters format: []
 
+  def index
+    users = User.all
+    render json: users, status: :ok
+  end
+
   def create
     @user = User.create!(user_params)
     @token = encode_token(user_id: @user.id)
