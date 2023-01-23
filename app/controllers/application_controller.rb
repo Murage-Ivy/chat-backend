@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token
+  before_action :authorized
   def encode_token(payload)
     JWT.encode(payload, ENV["my_secret"])
   end
@@ -7,7 +9,7 @@ class ApplicationController < ActionController::Base
     request.headers["Authorization"]
   end
 
-  def decode_token(token)
+  def decode_token
     if auth_header
       token = auth_header.split(" ")[1]
       begin

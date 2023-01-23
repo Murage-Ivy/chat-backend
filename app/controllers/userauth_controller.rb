@@ -1,0 +1,2 @@
+class UserauthController < ApplicationController
+end
