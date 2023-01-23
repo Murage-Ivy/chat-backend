@@ -1,2 +1,0 @@
-class UserauthController < ApplicationController
-end
