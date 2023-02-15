@@ -8,6 +8,11 @@ class UsersController < ApplicationController
     render json: users, status: :ok
   end
 
+  def show
+    user = find_user
+    render json: user, status: :ok
+  end
+
   def create
     @user = User.create!(user_params)
     @token = encode_token(user_id: @user.id)
@@ -30,5 +35,9 @@ class UsersController < ApplicationController
                            password: invalid.record.errors.full_messages_for(:password),
                            password_confirmation: invalid.record.errors.full_messages_for(:password_confirmation),
                            email: invalid.record.errors.full_messages_for(:email)] }, status: :unprocessable_entity
+  end
+
+  def find_user
+    User.find(params[:id])
   end
 end
