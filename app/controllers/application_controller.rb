@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  include ActionController::Cookies
   skip_before_action :verify_authenticity_token
   before_action :authorized
+
   def encode_token(payload)
     JWT.encode(payload, ENV["my_secret"])
   end
