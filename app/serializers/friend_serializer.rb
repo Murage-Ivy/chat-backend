@@ -1,3 +1,3 @@
 class FriendSerializer < ActiveModel::Serializer
-  attributes :id, :message_id, :user_id
+  attributes :id, :user_id, :name, :email
 end
