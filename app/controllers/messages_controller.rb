@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
   def index
     messages = Message.all
     render json: messages, status: :ok
@@ -10,7 +12,7 @@ class MessagesController < ApplicationController
   end
 
   def update
-    message = find_meaasge
+    message = find_message
     message.update!
     render json: message, status: :accepted
   end
@@ -24,7 +26,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.permit(:message, :user_id)
+    params.permit(:message, :sender, :reciever)
   end
 
   def find_message

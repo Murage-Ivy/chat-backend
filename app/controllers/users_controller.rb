@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     user = find_user
-    render json: user, status: :ok
+    render json: user, Serializer: PersonMessageSerializer, status: :ok
   end
 
   def create

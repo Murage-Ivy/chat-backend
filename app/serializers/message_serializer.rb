@@ -1,6 +1,5 @@
 class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :receiver, :summary
-  belongs_to :user
+  attributes :id, :reciever, :summary
 
   def summary
     "#{self.object.message[0..20]}..."

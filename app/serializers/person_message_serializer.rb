@@ -1,3 +1,4 @@
 class PersonMessageSerializer < ActiveModel::Serializer
-  attributes :id, 
+  attributes :id
+  has_many :messages
 end
