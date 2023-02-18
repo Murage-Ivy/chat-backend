@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :friends
-  resources :users, only: [:create]
+  resources :users, only: [:create] do
+    resources :friends
+  end
+
   resources :messages
 
   post "/user/login", to: "usersauth#create"
