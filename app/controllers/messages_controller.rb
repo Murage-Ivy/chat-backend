@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def index
     messages = Message.all
-    render json: messages, status: :ok
+    render json: messages, each_serializer: UserMessageSerializer, status: :ok
   end
 
   def create

@@ -10,13 +10,13 @@ class UsersController < ApplicationController
 
   def show
     user = find_user
-    render json: user, Serializer: PersonMessageSerializer, status: :ok
+    render json: user, status: :ok
   end
 
   def create
     @user = User.create!(user_params)
     @token = encode_token(user_id: @user.id)
-    # cookies[:user_id] ||= @user.id
+    cookies[:user_id] ||= @user.id
     render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
   end
 
