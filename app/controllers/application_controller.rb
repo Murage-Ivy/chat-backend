@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  include ActionController::Cookies
-  skip_before_action :verify_authenticity_token
+  # include ActionController::Cookies
+
   before_action :authorized
+  skip_before_action :verify_authenticity_token
 
   def encode_token(payload)
     JWT.encode(payload, ENV["my_secret"])
@@ -24,9 +25,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     if decode_token
-      user_id = decode_token[1]["user_id"]
+      user_id = decode_token[0]["user_id"]
       user = User.find_by(id: user_id)
     end
+    
   end
 
   def logged_in?
@@ -35,5 +37,6 @@ class ApplicationController < ActionController::Base
 
   def authorized
     render json: { errors: ["Please log in"] }, status: :unauthorized unless logged_in?
+
   end
 end
