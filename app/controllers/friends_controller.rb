@@ -7,14 +7,13 @@ class FriendsController < ApplicationController
     render json: friends, status: :ok
   end
 
-  def create   
+  def create
     if signed_up?
       friend = current_user.friends.create!(friend_params)
       render json: friend, status: :created
     else
       onApp?
     end
-    byebug
   end
 
   def show
@@ -53,5 +52,9 @@ class FriendsController < ApplicationController
 
   def signed_up?
     User.find_by(email: params[:email])
+  end
+
+  def get_regsitered_friends
+    User.find()
   end
 end

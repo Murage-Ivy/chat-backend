@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-  # skip_before_action :authorized, only: [:create]
 
   def index
     messages = Message.all
