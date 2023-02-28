@@ -8,6 +8,10 @@ class MessagesController < ApplicationController
 
   def create
     message = Message.create!(message_params)
+    if (message.save)
+      ActionCable.server.broadcast current_user, message: message
+    end
+
     render json: message, status: :created
   end
 
