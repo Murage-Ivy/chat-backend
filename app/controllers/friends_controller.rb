@@ -18,6 +18,7 @@ class FriendsController < ApplicationController
 
   def show
     friend = find_friend
+    friend = User.find_by(email: friend[:email])
     render json: friend, status: :ok
   end
 
