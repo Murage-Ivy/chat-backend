@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
       user_id = decode_token[0]["user_id"]
       user = User.find_by(id: user_id)
     end
-    
   end
 
   def logged_in?
@@ -37,6 +36,5 @@ class ApplicationController < ActionController::Base
 
   def authorized
     render json: { errors: ["Please log in"] }, status: :unauthorized unless logged_in?
-
   end
 end

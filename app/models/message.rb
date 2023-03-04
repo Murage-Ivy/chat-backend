@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
   validates :message, presence: :true
-  has_many :messages 
+  belongs_to :user
+  belongs_to :conversation
 end

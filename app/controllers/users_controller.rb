@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
   end
 
+  
   private
 
   def user_params

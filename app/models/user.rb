@@ -7,5 +7,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, length: { in: 6..8 }
   validates :image, attached: true
   has_many :friends, dependent: :destroy
-  # has_many :messages, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :conversations, through: :messages
 end
