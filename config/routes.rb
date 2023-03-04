@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :conversations
   resources :friends
   resources :users, only: [:create] do
     resources :friends
