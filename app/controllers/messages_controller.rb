@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   def create
     message = Message.create!(message_params)
     if (message.save)
-      MessageRoomChannel.server.broadcast_to(current_user, message)
+      MessageRoomChannel.broadcast_to(current_user, message)
     end
 
     render json: message, status: :created

@@ -22,9 +22,6 @@ class MessageRoomChannel < ApplicationCable::Channel
     byebug
   end
 
-  def decode_token
-  end
-
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
